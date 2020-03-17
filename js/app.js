@@ -17,7 +17,10 @@
  * Define Global Variables */
 const container = document.querySelector("main");
 let matches = container.querySelectorAll("landing_container");  
-let 
+const section1 = document.getElementById("section1");
+const section2 = document.getElementById("section2");
+const section3 = document.getElementById("section3");
+const section3 = document.getElementById("section4");
 /**
  * End Global Variables
  * Start Helper Functions
