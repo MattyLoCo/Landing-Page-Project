@@ -14,10 +14,10 @@
  */
 
 /**
- * Define Global Variables
- *
- */
-
+ * Define Global Variables */
+const container = document.querySelector("main");
+let matches = container.querySelectorAll("landing_container");  
+let 
 /**
  * End Global Variables
  * Start Helper Functions
