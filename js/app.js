@@ -36,14 +36,17 @@ const list = getElementById("navbar__list");
 // build the nav
 
 //loop over list and append each item as child
-for (item of items) {    
-    const list = getElementById("navbar__list");
-    let node = document.createElement("li");
-    node.classList.toggle("menu__link");
-    node.innerHTML = `<a href="#${item.dataset.id}">
-    ${item.dataset.nav}</a>`;    
-    list.appendChild(node); 
+function BuildNav {
+    for (const i = 0; i < items.length; i++) {    
+        let node = document.createElement("li");
+        node.classList.toggle("menu__link");
+        node.innerHTML = `<a href="#${i.dataset.id}">
+        ${i.dataset.nav}</a>`;    
+        getElementById("navbar__list").appendChild(node); 
+    }
 }
+BuildNav();
+
 // Add class 'active' to section when near top of viewport
 
 // Scroll to anchor ID using scrollTO event
