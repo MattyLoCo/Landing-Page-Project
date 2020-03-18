@@ -15,12 +15,12 @@
 
 /**
  * Define Global Variables */
-const container = document.querySelector("main");
-let matches = container.querySelectorAll("landing_container");  
-const section1 = document.getElementById("section1");
-const section2 = document.getElementById("section2");
-const section3 = document.getElementById("section3");
-const section3 = document.getElementById("section4");
+const container = document.getElementsByTagName("body");
+let items = document.querySelectorAll("section");
+// Items variable is node list to loop over for future appending 
+// to navbar unordered list.
+const list = getElementById("navbar__list");
+
 /**
  * End Global Variables
  * Start Helper Functions
@@ -35,6 +35,15 @@ const section3 = document.getElementById("section4");
 
 // build the nav
 
+//loop over list and append each item as child
+for (item of items) {    
+    const list = getElementById("navbar__list");
+    let node = document.createElement("li");
+    node.classList.toggle("menu__link");
+    node.innerHTML = `<a href="#${item.dataset.id}">
+    ${item.dataset.nav}</a>`;    
+    list.appendChild(node); 
+}
 // Add class 'active' to section when near top of viewport
 
 // Scroll to anchor ID using scrollTO event
