@@ -36,7 +36,7 @@ const list = getElementById("navbar__list");
 // build the nav
 
 //loop over list and append each item as child
-function BuildNav() {
+function buildNav() {
     for (const i = 0; i < items.length; i++) {    
         let node = document.createElement("li");
         node.classList.toggle("menu__link");
@@ -47,9 +47,14 @@ function BuildNav() {
 }
 
 // Add class 'active' to section when near top of viewport
-function makeActive {
-    
-    getElementById(event).classList.toggle("your-active-class");
+function makeActive() {
+    let containers = document.getElementsByName("section");
+    for (container of containers) {
+        let rect = item.getBoundingClientRect();        
+        if (rect.top <= 100) {
+            item.classList.toggle("your-active-class");
+        }    
+    }    
 }
 
 // Scroll to anchor ID using scrollTO event
@@ -61,9 +66,9 @@ function makeActive {
  */
 
 // Build menu
-body.addEventListener("load", BuildNav());
+document.body.addEventListener("load", buildNav);
 
 // Scroll to section on link click
 
 // Set sections as active
-body.addEventListener();
+window.visualViewport.addEventListener("scroll", makeActive);
