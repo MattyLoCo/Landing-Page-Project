@@ -14,7 +14,7 @@
  */
 
 /**
- * Define Global Variables */
+ * Global Variables */
 const container = document.getElementsByTagName("body");
 let items = document.querySelectorAll("section");
 // Items variable is node list to loop over for future appending 
@@ -23,7 +23,7 @@ const list = getElementById("navbar__list");
 
 /**
  * End Global Variables
- * Start Helper Functions
+ * Helper Functions
  *
  */
 
@@ -38,10 +38,24 @@ const list = getElementById("navbar__list");
 //loop over list and append each item as child
 function buildNav() {
     for (const i = 0; i < items.length; i++) {    
-        let node = document.createElement("li");
+        // Create elements to begin appending attributes
+        let node = document.createElement("LI");
+        let a = document.createElement("A");
+        let link = document.createTextNode(i.dataset.nav);
+
+        // Set property values and append to node
+        // Not sure if I'm actually accessing the value of the data-nav in the variable below
+        a.href = `href="#${i.id}"`
+        a.appendChild(link);    
+        node.appendChild(a);         
         node.classList.toggle("menu__link");
-        node.innerHTML = `<a href="#${i.dataset.id}">
-        ${i.dataset.nav}</a>`;    
+
+            // node.innerHTML = `<a href="#${i.id}">
+            // ${i.dataset.nav}</a>`;    
+
+        // Add complete LI to UL aka ID navbar__list
+            // How to make sure the scrollTo function supercedes this jump to anchor?
+            // Get rid of the anchor and leave the "click" event?
         getElementById("navbar__list").appendChild(node); 
     }
 }
@@ -58,7 +72,13 @@ function makeActive() {
 }
 
 // Scroll to anchor ID using scrollTO event
-
+function scrollTo(e) {
+    if (e.target && e.target.nodeName === "LI") {
+        let li = e.target.a;
+        let linknav = li.href;
+        linknav.scrollIntoView();
+    }    
+}
 /**
  * End Main Functions
  * Begin Events
@@ -69,6 +89,7 @@ function makeActive() {
 document.body.addEventListener("load", buildNav);
 
 // Scroll to section on link click
+document.getElementById("navbar__list").addEventListener("click", scrollTo);
 
 // Set sections as active
 window.visualViewport.addEventListener("scroll", makeActive);
