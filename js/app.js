@@ -15,12 +15,7 @@
 
 /**
  * Define Global Variables */
-const container = document.getElementsByTagName("body");
-let items = document.querySelectorAll("section");
-// Items variable is node list to loop over for future appending 
-// to navbar unordered list.
-const list = getElementById("navbar__list");
-
+const sectionItems = document.getElementsByTagName("section");
 /**
  * End Global Variables
  * Start Helper Functions
@@ -35,22 +30,10 @@ const list = getElementById("navbar__list");
 
 // build the nav
 
-//loop over list and append each item as child
-function buildNav() {
-    for (const i = 0; i < items.length; i++) {    
-        let node = document.createElement("li");
-        node.classList.toggle("menu__link");
-        node.innerHTML = `<a href="#${i.dataset.id}">
-        ${i.dataset.nav}</a>`;    
-        getElementById("navbar__list").appendChild(node); 
-    }
-}
-
 // Add class 'active' to section when near top of viewport
 function makeActive() {
-    let containers = document.getElementsByName("section");
-    for (container of containers) {
-        let rect = item.getBoundingClientRect();        
+    for (let item of sectionItems) {
+        let rect = item.getBoundingClientRect();
         if (rect.top <= 100) {
             item.classList.toggle("your-active-class");
         }    
@@ -66,9 +49,20 @@ function makeActive() {
  */
 
 // Build menu
-document.body.addEventListener("load", buildNav);
+// document.body.addEventListener("load", buildNav);
+
+//loop over list and append each item as child
+window.onload = function buildNav() {
+    for (let sectionItem of sectionItems) {
+        let node = document.createElement("li");
+        node.classList.toggle("menu__link");
+        node.innerHTML = `<a href="#${sectionItem.dataset.id}">
+        ${sectionItem.dataset.nav}</a>`;
+        document.getElementById("navbar__list").appendChild(node);
+    }
+};
 
 // Scroll to section on link click
 
 // Set sections as active
-window.visualViewport.addEventListener("scroll", makeActive);
+window.onscroll = makeActive;
