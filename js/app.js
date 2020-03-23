@@ -15,7 +15,7 @@
 
 /**
  * Global Variables */
-let sectionItems = document.getElementsByTagName("section");
+const sectionItems = document.getElementsByTagName("section");
 // Items variable is node list to loop over for future appending 
 // to navbar unordered list.
 const list = getElementById("navbar__list");
@@ -51,7 +51,7 @@ function buildNav() {
 
 // Add class 'active' to section when near top of viewport
 function makeActive() {
-    for (item of sectionItems) {
+    for (let item of sectionItems) {
         let rect = item.getBoundingClientRect();        
         if (rect.top <= 100) {
             item.classList.toggle("your-active-class");
