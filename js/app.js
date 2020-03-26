@@ -38,8 +38,7 @@ function buildNav() {
     for (let sectionItem of sectionItems) {    
         let node = document.createElement("li");
         node.className = "menu__link";
-        node.innerHTML = `<a href="#${sectionItem.id}">
-        ${sectionItem.dataset.nav}</a>`;           
+        node.innerHTML = `<a href="#${sectionItem.id}">${sectionItem.dataset.nav}</a>`;
         document.getElementById("navbar__list").appendChild(node); 
     }
 }
@@ -47,8 +46,8 @@ function buildNav() {
 // Add class 'active' to section when near top of viewport
 function makeActive() {
     for (let item of sectionItems) {
-        let rect = item.getBoundingClientRect();     
-        if (rect.top <= 100) {
+        // let rect = item.getBoundingClientRect();     
+        if (item.getBoundingClientRect().top < 100) {
             item.className = "your-active-class";
         } else {
             item.className = "";
@@ -71,10 +70,10 @@ function scrollTo(e) {
  */
 
 // Build menu
-window.onload = function() {buildNav()};
+window.onload = buildNav;
 
 // Scroll to section on link click
 document.getElementById("navbar__list").addEventListener("click", scrollTo);
 
 // Set sections as active
-window.onscroll = function() {makeActive()};
+window.onscroll = makeActive;
