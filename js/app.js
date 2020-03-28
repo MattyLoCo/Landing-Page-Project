@@ -38,15 +38,15 @@ function buildNav() {
     for (let sectionItem of sectionItems) {    
         let node = document.createElement("li");
         node.className = "menu__link";
-        node.innerHTML = `<a href="#${sectionItem.id}">${sectionItem.dataset.nav}</a>`;
-        document.getElementById("navbar__list").appendChild(node); 
+        node.innerHTML = `<a href="#${sectionItem.id}">${sectionItem.dataset.nav}</a>`;        
+        node.onclick = scrollTo;
+        document.getElementById("navbar__list").appendChild(node);         
     }
 }
 
 // Add class 'active' to section when near top of viewport
 function makeActive() {
-    for (let item of sectionItems) {
-        // let rect = item.getBoundingClientRect();     
+    for (let item of sectionItems) {  
         if (item.getBoundingClientRect().top < 100) {
             item.className = "your-active-class";
         } else {
@@ -56,13 +56,15 @@ function makeActive() {
 }    
 
 // Scroll to anchor ID using scrollTO event
-function scrollTo(e) {
-    if (e.target && e.target.nodeName === "li") {
-        let li = e.target.a;
-        let linknav = li.href;
-        linknav.scrollIntoView();
-    }    
-}
+// function scrollTo(e) {
+//     if (e && e.nodeName === "li") {
+//         let a = e.getElementByTagName("a");
+//         let linknav = a.href;
+//         document.getElementById(linknav).scrollIntoView();
+//         makeActive();
+//     }    
+// }
+
 /**
  * End Main Functions
  * Begin Events
@@ -73,7 +75,7 @@ function scrollTo(e) {
 window.onload = buildNav;
 
 // Scroll to section on link click
-document.getElementById("navbar__list").addEventListener("click", scrollTo);
+// document.getElementsByTagName("li").addEventListener("click", scrollTo);
 
 // Set sections as active
 window.onscroll = makeActive;
