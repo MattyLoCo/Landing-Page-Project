@@ -39,7 +39,9 @@ function buildNav() {
         let node = document.createElement("li");
         node.className = "menu__link";
         node.innerHTML = `<a href="#${sectionItem.id}">${sectionItem.dataset.nav}</a>`;        
-        node.onclick = scrollTo;
+        // Below was an attempt to attach an onclick event to each "li" node that would
+        // call the scrollTo function I created below
+        // node.onclick = scrollTo;
         document.getElementById("navbar__list").appendChild(node);         
     }
 }
@@ -56,6 +58,10 @@ function makeActive() {
 }    
 
 // Scroll to anchor ID using scrollTO event
+// This was the hand-coded attempt to create smooth scrolling using
+// "scrollIntoView" method. However, that did not work, so I used
+// CSS to create the scroll effect.
+
 // function scrollTo(e) {
 //     if (e && e.nodeName === "li") {
 //         let a = e.getElementByTagName("a");
